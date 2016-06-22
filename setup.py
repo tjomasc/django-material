@@ -25,6 +25,7 @@ setup(
     zip_safe=False,
     platforms=['any'],
     install_requires=[
+        'django-datatables-view >= 1.3'
     ],
     classifiers=[
         'Framework :: Django',

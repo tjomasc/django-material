@@ -125,6 +125,29 @@ STATICFILES_DIRS = (
 
 SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
 
+# Logging
+
+LOGGING = {
+    'version': 1,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'propagate': True,
+            'level': 'DEBUG',
+        },
+        'django.request': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    }
+}
+
 # Django debug toolbar
 # http://django-debug-toolbar.readthedocs.io/en/1.4/configuration.html
 DEBUG_TOOLBAR_CONFIG = {
