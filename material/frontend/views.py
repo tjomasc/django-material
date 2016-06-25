@@ -36,6 +36,28 @@ class ListModelView(ContextMixin, TemplateResponseMixin, View):
     list_display = ('__str__', )
     list_display_links = ()
 
+    datatable_default_config = {
+        'processing': False,
+        'serverSide': True,
+        'ajax': '.',
+        'ordering': False,
+        'info': False,
+        'bFilter': False,
+        'bAutoWidth': False,
+        'bLengthChange': False,
+        "oLanguage": {
+            'oPaginate': {
+                'sFirst': "",
+                'sLast': "",
+                'sNext': "&rang;",
+                'sPrevious': "&lang;",
+            }
+        },
+        'responsive': {
+            'details': False
+        }
+    }
+
     def has_perm(self, user):
         return True
 
@@ -86,30 +108,11 @@ class ListModelView(ContextMixin, TemplateResponseMixin, View):
         return queryset
 
     def get_datatable_config(self):
-        if not self.datatable_config:
-            return {
-                'processing': False,
-                'serverSide': True,
-                'ajax': '.',
-                'iDisplayLength': self.paginate_by,
-                'ordering': False,
-                'info': False,
-                'bFilter': False,
-                'bAutoWidth': False,
-                'bLengthChange': False,
-                "oLanguage": {
-                    'oPaginate': {
-                        'sFirst': "",
-                        'sLast': "",
-                        'sNext': "",
-                        'sPrevious': '',
-                    }
-                },
-                'responsive': {
-                    'details': False
-                }
-            }
-        return self.datatable_config
+        config = self.datatable_default_config.copy()
+        config['iDisplayLength'] = self.paginate_by
+        if self.datatable_config is not None:
+            config.update(self.datatable_config)
+        return config
 
     def get_context_data(self, **kwargs):
         context = super(ListModelView, self).get_context_data(**kwargs)

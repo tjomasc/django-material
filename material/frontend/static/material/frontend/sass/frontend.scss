@@ -164,6 +164,32 @@ ul.side-nav.module-menu li.active>a>span.badge {
     color: wheat;
 }
 
+.frontend .dataTables_paginate {
+    text-align: right;
+}
+
+.frontend .paginate_button {
+    display: inline-block;
+    font-size: 1.2rem;
+    padding: 0 10px;
+    margin: 15px 2px;
+    line-height: 30px;
+    border-radius: 2px;
+    text-align: center;
+    color: #444;
+    cursor: pointer;
+
+    &.current {
+        background-color: $primary-color;
+        color: white;
+    }
+
+    &.disabled  {
+      cursor: default;
+      color: #999;
+    }
+}
+
 /*
   Responsible layout 
 */
