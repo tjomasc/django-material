@@ -8,7 +8,7 @@ from django.views import generic
 from formtools.wizard.views import SessionWizardView
 from material.frontend import urls as frontend_urls
 
-from . import forms, widget_forms, admin_forms
+from . import forms, views, widget_forms, admin_forms
 
 
 def index_view(request):
@@ -155,6 +155,7 @@ urlpatterns = [
         form_class=admin_forms.AdminBigIntegerFieldWidgetForm)),
 
     # frontend
+    url(r'^demo/frontend/createview/', views.CreateUserView.as_view()),
     url(r'^frontend/$', generic.RedirectView.as_view(url='/frontend/accounting/', permanent=False), name="index"),
     url(r'', include(frontend_urls)),
 ]

@@ -1,5 +1,5 @@
 import extra_views
-from material import LayoutMixin, Layout, Fieldset, Inline, Row, Span2, Span5, Span7
+from material import LayoutMixin, Layout, Fieldset, TabularInline, Row, Span2, Span5, Span7
 
 from .models import Shipment, ShipmentItem
 
@@ -14,12 +14,12 @@ class NewShipmentView(LayoutMixin,
                       extra_views.CreateWithInlinesView):
     title = "New Shipment"
     model = Shipment
+    inlines = [ItemInline]
     layout = Layout(
         Row('first_name', 'last_name', 'email'),
         Row('phone'),
         Fieldset('Address',
                  Row(Span7('address'), Span5('zipcode')),
                  Row(Span5('city'), Span2('state'), Span5('country'))),
-        Inline('Shipment Items', ItemInline),
+        TabularInline('Shipment Items', 'iteminline'),
     )
-

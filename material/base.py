@@ -86,16 +86,15 @@ class Fieldset(LayoutNode):
         self.span_columns = kwargs.pop('span_columns', 1)
 
 
-class Inline(LayoutNode):
+class TabularInline(LayoutNode):
     template_name = 'layout/inline_tabular.html'
 
-    def __init__(self, label, inline, varname=None):
+    def __init__(self, label, inline_name):
         self.label = label
-        self.inline = inline
-        self.varname = varname if varname else _camel_case_to_underscore(inline.__name__)
+        self.inline_name = inline_name
 
     def get_context_data(self, context):
-        return {'inline': context[self.varname]}
+        return {'inline': context['formsets'][self.inline_name]}
 
 
 class Row(LayoutNode):

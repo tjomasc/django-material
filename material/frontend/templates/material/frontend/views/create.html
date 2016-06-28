@@ -8,8 +8,23 @@
             {% csrf_token %}
             <div class="card">
                 <div class="card-content">
+                    <div class="card-title">Create New</div>
                     {% block form %}
-                    {% form %}{% endform %}
+                    {% if view.layout or form.layout%}
+                        {% if view.layout %}
+                            {% form layout=view.layout %}{% endform %}
+                        {% endif %} 
+                        {% if form.layout %}
+                            {% form layout=form.layout %}{% endform %}
+                        {% endif %}
+                    {% else %}
+                        {% form %}{% endform %}
+                        {% for name, formset in formsets.items %}
+                        <table>
+                            {{ formset.as_table }}
+                        </table>
+                        {% endfor %}
+                    {% endif %}
                     {% endblock %}
                 </div>
                 <div class="card-action">
