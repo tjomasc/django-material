@@ -20,10 +20,11 @@ class ModelViewSet(object):
     list_display = DEFAULT
     list_display_links = DEFAULT
 
-    def _add_option(self, target, option_name):
-        option = getattr(self, option_name)
-        if option is not DEFAULT:
-            target[option_name] = option
+    def _add_option(self, view_class, target, option_name):
+        if hasattr(view_class, option_name):
+            option = getattr(self, option_name)
+            if option is not DEFAULT:
+                target[option_name] = option
 
     def has_perm(self, user):
         return True
@@ -37,8 +38,8 @@ class ModelViewSet(object):
 
     def get_list_view_kwargs(self):
         kwargs = self.get_common_kwargs()
-        self._add_option(kwargs, 'list_display')
-        self._add_option(kwargs, 'list_display_links')
+        self._add_option(self.list_view_class, kwargs, 'list_display')
+        self._add_option(self.list_view_class, kwargs, 'list_display_links')
         return kwargs
 
     def get_update_view_kwargs(self):
