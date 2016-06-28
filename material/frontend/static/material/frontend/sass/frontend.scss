@@ -164,11 +164,15 @@ ul.side-nav.module-menu li.active>a>span.badge {
     color: wheat;
 }
 
-.frontend .dataTables_paginate {
+.frontend-list>.col>.card {
+    margin-bottom: 40px;
+}
+
+.frontend-list .dataTables_paginate {
     text-align: right;
 }
 
-.frontend .paginate_button {
+.frontend-list .paginate_button {
     display: inline-block;
     font-size: 1.2rem;
     padding: 0 10px;

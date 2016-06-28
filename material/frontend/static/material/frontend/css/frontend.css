@@ -127,10 +127,13 @@ ul.side-nav.module-menu li.active > a > span.badge {
   padding-right: 5px;
   color: wheat; }
 
-.frontend .dataTables_paginate {
+.frontend-list > .col > .card {
+  margin-bottom: 40px; }
+
+.frontend-list .dataTables_paginate {
   text-align: right; }
 
-.frontend .paginate_button {
+.frontend-list .paginate_button {
   display: inline-block;
   font-size: 1.2rem;
   padding: 0 10px;
@@ -140,10 +143,10 @@ ul.side-nav.module-menu li.active > a > span.badge {
   text-align: center;
   color: #444;
   cursor: pointer; }
-  .frontend .paginate_button.current {
+  .frontend-list .paginate_button.current {
     background-color: #4caf50;
     color: white; }
-  .frontend .paginate_button.disabled {
+  .frontend-list .paginate_button.disabled {
     cursor: default;
     color: #999; }
 
