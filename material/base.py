@@ -160,6 +160,7 @@ class Span(object):
         else:
             hidden_initial = ''
 
+            import ipdb; ipdb.set_trace()
             if bound_field.field.show_hidden_initial:
                 hidden_initial = bound_field.as_hidden(only_initial=True)
 
