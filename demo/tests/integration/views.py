@@ -33,6 +33,7 @@ class ContinentViewSet(ModelViewSet):
 
 class CountryViewSet(ModelViewSet):
     model = models.Country
+    paginate_by = 250
     list_display = (
         'tld', 'name', 'continent',
         'became_independent_in_20_century',

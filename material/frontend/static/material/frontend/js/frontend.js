@@ -19,3 +19,11 @@ $('.collapsible').collapsible({
 
 $(".button-collapse").sideNav();
 $(".dropdown-button").dropdown();
+
+
+$(document) .on('pjax:beforeReplace', function() {
+  $(".page").perfectScrollbar('destroy');
+});
+$(document) .on('ready pjax:success', function() {
+  $(".page").perfectScrollbar();
+});

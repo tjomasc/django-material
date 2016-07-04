@@ -4,7 +4,8 @@ html, body {
   height: 100%; }
 
 body {
-  background: #eee; }
+    background: #eee;
+}
 
 nav ul a:hover {
   background-color: transparent; }

@@ -18,7 +18,7 @@ class ListModelView(ContextMixin, TemplateResponseMixin, View):
     model = None
     viewset = None
     queryset = None
-    paginate_by = 15
+    paginate_by = 150
     datatable_config = None
     template_name_suffix = '_list'
 

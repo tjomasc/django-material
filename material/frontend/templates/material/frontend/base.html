@@ -14,6 +14,7 @@
         <link href="{% static 'material/css/responsive.dataTables.css' %}" rel="stylesheet">
         <link href="{% static 'material/css/fixedHeader.dataTables.css' %}" rel="stylesheet">
         <link href="{% static 'material/css/forms.css ' %}" rel="stylesheet">
+        <link href="{% static 'material/frontend/css/perfect-scrollbar.css' %}" rel="stylesheet">
         <link href="{% static 'material/frontend/css/frontend.css' %}" rel="stylesheet">
         <link href="{% static 'material/fonts/material-design-icons/material-icons.css' %}" rel="stylesheet">
         {% endblock %}
@@ -27,6 +28,7 @@
         <script src="{% static 'material/js/dataTables.responsive.js' %}"></script>
         <script src="{% static 'material/js/dataTables.fixedHeader.js' %}"></script>
         <script src="{% static 'material/frontend/js/jquery.activeNavigation.js' %}"></script>
+        <script src="{% static 'material/frontend/js/perfect-scrollbar.jquery.js' %}"></script>
         <script src="{% static 'material/frontend/js/jquery.pjax.js' %}"></script>
         <script src="{% static 'material/js/material_init.js' %}"></script>
         <script src="{% static 'material/frontend/js/frontend.js' %}"></script>
@@ -35,6 +37,34 @@
         {% block extrahead %}{% endblock %}
     </head>
     <body>
+                <ul id="nav-mobile" class="side-nav fixed module-menu">
+                    <li class="logo valign-wrapper">
+                        <a href="/" class="no-navigation"><img class="responsive-img" src="{% static 'material/imgs/logo.png' %}"></a>
+                    </li>
+
+                    {% for module in modules %}
+                    {% if current_module == module %}
+                    <li class="no-padding">
+                        <div class="collapsible-body" style="display:block">
+                            <ul class="collapsible" data-collapsible="expandable">
+                                <li class="header active">
+                                    <a class="collapsible-header no-pjax">{{ module.icon|safe|default:" " }}{{ module.verbose_name|default:"" }}</a>
+                                    <div class="collapsible-body" style="display: block;">
+                                        {% include module.menu %}
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    {% else %}
+                    <li class="no-padding">
+                        <a class="collapsible-header no-pjax" href="{{ module.index_url }}">{{ module.icon|safe|default:" " }} {{ module.verbose_name|default:"" }}</a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+
+        <div class="page" style="position:relative;height:100%">
         {% if user.is_authenticated %}{% block user_menu %}{% include 'material/frontend/includes/user_menu.html' %}{% endblock %}{% endif %}
         <header>
             <nav class="nav-top">
@@ -57,7 +87,7 @@
                     </ul>
                 </div>
 
-                <ul id="nav-mobile" class="side-nav fixed module-menu">
+                <!--ul id="nav-mobile" class="side-nav fixed module-menu">
                     <li class="logo valign-wrapper">
                         <a href="/" class="no-navigation">{% block page_logo %}<img class="responsive-img" src="{% static 'material/imgs/logo.png' %}">{% endblock %}</a>
                     </li>
@@ -82,7 +112,7 @@
                     </li>
                     {% endif %}
                     {% endfor %}
-                </ul>
+                </ul-->
             </nav>
         </header>
         <main>
@@ -122,5 +152,6 @@
             </div>
         </div>
         {% endblock %}
+        </div>
     </body>
 </html> 
