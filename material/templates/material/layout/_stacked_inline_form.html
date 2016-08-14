@@ -1,26 +1,24 @@
 {% load material_form_internal %}
-<div class="col s12" data-formset-form>
-    <div class="card-panel">
-        <div class="col {% if formset.can_delete %}m9{% else %}m12{% endif %}"> 
-            {% for hidden in form.hidden_fields %}{{ hidden }}{% endfor %}
-            {% if layout %}
-                {% render layout %}{% endrender %}
-            {% else %}
-                {% for bound_field in form.visible_fields %}
-                    {% if bound_field.name != 'DELETE' %}
-                        {% render bound_field %}{% endrender %}
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
-        </div>
-        {% if formset.can_delete %}
-        <div class="col m3">
-            <div style="display:none">{{ form.DELETE }}</div>
-            <button type="button" class="btn btn-flat white lighten-4"
-                data-formset-delete-button>
-                <i class="material-icons">clear</i>
-            </button>
-        </div>
+<div class="card-panel row" data-formset-form>
+    <div class="col {% if formset.can_delete %}m11{% else %}m12{% endif %}"> 
+        {% for hidden in form.hidden_fields %}{{ hidden }}{% endfor %}
+        {% if layout %}
+            {% render layout %}{% endrender %}
+        {% else %}
+            {% for bound_field in form.visible_fields %}
+                {% if bound_field.name != 'DELETE' %}
+                    {% render bound_field %}{% endrender %}
+                {% endif %}
+            {% endfor %}
         {% endif %}
     </div>
+    {% if formset.can_delete %}
+    <div class="col m1">
+        <div style="display:none">{{ form.DELETE }}</div>
+        <button type="button" class="btn btn-flat white lighten-4"
+            data-formset-delete-button>
+            <i class="material-icons">clear</i>
+        </button>
+    </div>
+    {% endif %}
 </div>
