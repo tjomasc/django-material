@@ -1,0 +1,17 @@
+{% with formset=bound_field.value %}
+<div class="section row">
+    <div class="formset-field col s12" data-formset-prefix="{{ formset.prefix }}">
+        {% part field label %}<h5>{{ bound_field.name|capfirst }}</h5>{% endpart %}
+        <script type="form-template" data-formset-empty-form>
+            {% include 'material/layout/_stacked_inline_form.html' with form=formset.empty_form layout=formset.empty_form.layout %}
+        </script>
+		<div data-formset-body>
+			{% for form in formset %}
+			{% include 'material/layout/_stacked_inline_form.html' with layout=form.layout %}
+			{% endfor %}
+        </div>
+        <button type="button" class="btn btn-flat grey lighten-4" style="padding:0px 40px;width:100%" data-formset-add><i class="material-icons">add</i></button>
+        {{ formset.management_form }}
+    </div>
+</div>
+{% endwith %}
